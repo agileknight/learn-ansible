@@ -1,0 +1,14 @@
+---
+- name: Install Java 8
+  hosts: localhost
+  tasks:
+  - name: install Java 8 repo
+    apt_repository: repo="ppa:webupd8team/java" update_cache=yes
+  - name: mark oracle license as selected
+    debconf: >
+      name='oracle-java8-installer'
+      question='shared/accepted-oracle-license-v1-1'
+      value='true'
+      vtype='select'
+  - name: install Java 8
+    apt: name=oracle-java8-installer

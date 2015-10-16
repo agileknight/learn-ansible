@@ -1,0 +1,10 @@
+[web]
+a01
+
+[db]
+a02
+
+[a]
+a01      ansible_ssh_host=188.226.238.53 # active
+a02      ansible_ssh_host=178.62.134.242 # active
+

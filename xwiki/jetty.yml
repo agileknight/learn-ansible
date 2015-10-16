@@ -1,0 +1,9 @@
+---
+- name: Install Jetty
+  hosts: localhost
+  tasks:
+  - name: update apt cache
+    apt: update_cache=yes
+  - name: curl package
+    apt: name=curl
+

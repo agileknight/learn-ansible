@@ -1,0 +1,23 @@
+---
+- hosts: all
+  gather_facts: no
+  tasks:
+  - name: update apt cache
+    apt: update_cache=yes
+  - name: curl package
+    apt: name=curl
+  - name: docker daemon
+    shell: curl -sSL https://get.docker.com/ | sh
+    args:
+      creates: /usr/bin/docker
+  - name: install pip
+    apt: name=python-pip
+  - name: Install docker-py as a workaround for Ansible issue (https://github.com/ansible/ansible-modules-core/issues/1792)
+    pip: name=docker-py version=1.2.3
+  - name: busybox docker container
+    docker:
+      name: mydata
+      image: busybox
+      state: present
+
+
